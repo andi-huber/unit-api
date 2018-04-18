@@ -36,6 +36,8 @@ package javax.measure;
 
 import java.util.Map;
 
+import javax.measure.spi.Prefix;
+
 /**
  * Represents a determinate {@linkplain Quantity quantity} (as of length, time, heat, or value) adopted as a standard of measurement.
  *
@@ -337,6 +339,13 @@ public interface Unit<Q extends Quantity<Q>> {
    * @return the unit after the specified transformation.
    */
   Unit<Q> transform(UnitConverter operation);
+  
+  /**
+   * TODO
+   * @param prefix
+   * @return
+   */
+  Unit<Q> prefix(Prefix prefix);
 
   /**
    * <p>
@@ -352,4 +361,6 @@ public interface Unit<Q extends Quantity<Q>> {
    */
   @Override
   String toString();
+
+  
 }

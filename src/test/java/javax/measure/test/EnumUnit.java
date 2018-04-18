@@ -36,6 +36,7 @@ import javax.measure.IncommensurableException;
 import javax.measure.UnconvertibleException;
 import javax.measure.Unit;
 import javax.measure.UnitConverter;
+import javax.measure.spi.Prefix;
 
 /**
  * @author Werner Keil
@@ -140,4 +141,10 @@ enum EnumUnit implements Unit {
   public String getName() {
     return name();
   }
+
+@Override
+public Unit prefix(Prefix prefix) {
+	// TODO Auto-generated method stub
+	return null;
+}
 }

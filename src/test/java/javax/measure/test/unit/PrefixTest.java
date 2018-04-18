@@ -43,7 +43,8 @@ public class PrefixTest {
   @Test
   public void testKilo() {
     final Quantity<Length> m1 = new DistanceQuantity(1, m);
-    final Unit<Length> km = m.transform(KILO.getConverter());
+    final Unit<Length> km = m.prefix(KILO);
+    
     assertEquals("k", KILO.getSymbol());
     assertEquals(1d, m1.getValue());
     assertEquals("m", km.toString());

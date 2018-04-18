@@ -29,11 +29,6 @@
  */
 package javax.measure.spi;
 
-import java.util.Collections;
-import java.util.Set;
-
-import javax.measure.UnitConverter;
-
 /**
  * <p>
  * A unit prefix is a specifier or mnemonic that is prepended to units of measurement to indicate multiples or fractions of the units.
@@ -44,19 +39,23 @@ import javax.measure.UnitConverter;
  * @since 2.0
  */
 public interface Prefix {
-  // TODO consider pulling SymbolSupplier and maybe UnitConverterSupplier into the API
+	// TODO consider pulling SymbolSupplier and maybe UnitConverterSupplier into the API
 
-  /**
-   * Returns the symbol of this prefix.
-   *
-   * @return this prefix symbol, not {@code null}.
-   */
-  public String getSymbol();
+	/**
+	 * Returns the symbol of this prefix.
+	 *
+	 * @return this prefix symbol, not {@code null}.
+	 */
+	public String getSymbol();
 
-  /**
-   * Returns the corresponding {@link UnitConverter}.
-   *
-   * @return the unit converter.
-   */
-  public UnitConverter getConverter();
+	/**
+	 * Base part of the associated factor in base^power representation.
+	 */
+	public int getBase();
+
+	/**
+	 * Power part of the associated factor in base^power representation.
+	 */
+	public int getPower();
+
 }

@@ -29,12 +29,11 @@
  */
 package javax.measure.test.unit;
 
-import javax.measure.UnitConverter;
-import javax.measure.spi.Prefix;
-
 import java.util.Collections;
 import java.util.EnumSet;
 import java.util.Set;
+
+import javax.measure.spi.Prefix;
 
 /**
  * <p>
@@ -45,58 +44,63 @@ import java.util.Set;
  * @since 2.0
  */
 public enum TestPrefix implements Prefix {
-  MEGA("M", new MultiplyConverter(1E6d)), //
-  KILO("k", new MultiplyConverter(1E3d));
+	MEGA("M", 10, 6), //
+	KILO("k", 10, 3);
 
-  /**
-   * The symbol of this prefix, as returned by {@link #getSymbol}.
-   *
-   * @serial
-   * @see #getSymbol()
-   */
-  private final String symbol;
+	/**
+	 * The symbol of this prefix, as returned by {@link #getSymbol}.
+	 *
+	 * @serial
+	 * @see #getSymbol()
+	 */
+	private final String symbol;
 
-  /**
-   * The <code>UnitConverter</code> of this prefix, as returned by {@link #getConverter}.
-   *
-   * @serial
-   * @see #getConverter()
-   * @see {@link UnitConverter}
-   */
-  private final UnitConverter converter;
+	private final int base;
+	private final int power;
 
-  /**
-   * Creates a new prefix.
-   *
-   * @param symbol
-   *          the symbol of this prefix.
-   * @param converter
-   *          the associated unit converter.
-   */
-  private TestPrefix(String symbol, UnitConverter converter) {
-    this.symbol = symbol;
-    this.converter = converter;
-  }
+	/**
+	 * Creates a new prefix.
+	 *
+	 * @param symbol
+	 *          the symbol of this prefix.
+	 * @param base
+	 *          part of the associated factor in base^power representation.
+	 * @param power
+	 *          part of the associated factor in base^power representation.
+	 */
+	private TestPrefix(String symbol, int base, int power) {
+		this.symbol = symbol;
+		this.base = base;
+		this.power = power;
+	}
 
-  /**
-   * Returns the symbol of this prefix.
-   *
-   * @return this prefix symbol, not {@code null}.
-   */
-  public String getSymbol() {
-    return symbol;
-  }
+	/**
+	 * Returns the symbol of this prefix.
+	 *
+	 * @return this prefix symbol, not {@code null}.
+	 */
+	@Override
+	public String getSymbol() {
+		return symbol;
+	}
 
-  /**
-   * Returns the corresponding unit converter.
-   *
-   * @return the unit converter.
-   */
-  public UnitConverter getConverter() {
-    return converter;
-  }
+	/**
+	 * Base part of the associated factor in base^power representation.
+	 */
+	@Override
+	public int getBase() {
+		return base;
+	}
+	
+	/**
+	 * Power part of the associated factor in base^power representation.
+	 */
+	@Override
+	public int getPower() {
+		return power;
+	}
 
-  public static Set<Prefix> prefixes() {
-    return Collections.<Prefix> unmodifiableSet(EnumSet.allOf(TestPrefix.class));
-  }
+	public static Set<Prefix> prefixes() {
+		return Collections.<Prefix> unmodifiableSet(EnumSet.allOf(TestPrefix.class));
+	}
 }
